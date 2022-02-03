@@ -6,7 +6,8 @@ close all
 %Fetching the data
 data = webread('https://covid.ourworldindata.org/data/owid-covid-data.csv');
 
-%%
+%% 
+%Data_adjustments
 data.location = categorical(data.location);
 date_reported = data.date;
 country = data.location;
@@ -19,6 +20,9 @@ data_India = (data_1(data_1.country == 'India',:));
 data_US = (data_1(data_1.country == 'United States',:));
 data_Canada = (data_1(data_1.country == 'Canada',:));
 data_Italy = (data_1(data_1.country == 'Italy',:));
+data_US(1:9,:) = [];
+data_India(1,:) = [];
+data_Canada(1:5,:) = [];
 
 %%
 %Plotting the data in MATLAB
@@ -33,11 +37,6 @@ legend('India', 'United States', 'Canada', 'Italy');
 title('New Cases of COVID-19');
 ylabel('New cases per million')
 
-%%
-%Data adjustments
-data_US(1:9,:) = [];
-data_India(1,:) = [];
-data_Canada(1:5,:) = [];
 
 %%
 %Variations - Area plot
